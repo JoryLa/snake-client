@@ -1,4 +1,5 @@
 const net = require('net');
+const { stdin } = require('process');
 
 // establishes a connection with the game server
 const connect = function() {
@@ -12,7 +13,13 @@ const connect = function() {
     conn.write('Name: JDL')
     //setInterval(() => {conn.write('Move: up')}, 50);
     //setTimeout(() => {conn.write('Move: left')}, 100);
-  })
+  });
+
+    handleUserInput = function() {
+      if (handleUserInput === `\u0003`) {
+        process.exit();
+      }
+    };
   
   conn.on('data', (idleMessage) => {
     console.log(idleMessage)
